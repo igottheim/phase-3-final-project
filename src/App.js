@@ -19,14 +19,14 @@ function App() {
 
   //useEffect to pull information from db.json() file
   useEffect(()=>{
-  fetch('http://localhost:9295/users')
+  fetch('http://localhost:9296/users')
   .then(r=> r.json())
   .then(data => setUsers(data))
   }
   ,[])
 
   useEffect(()=>{
-    fetch('http://localhost:9295/tasks')
+    fetch('http://localhost:9296/tasks')
     .then(r=> r.json())
     .then(data => setTasks(data))
     }
@@ -39,7 +39,7 @@ function App() {
   {
     e.preventDefault()
 
-    fetch('http://localhost:9295/users?' + new URLSearchParams({
+    fetch('http://localhost:9296/users?' + new URLSearchParams({
       first_name: e.target[0].value,
       last_name : e.target[1].value,
       password : e.target[2].value
@@ -55,6 +55,26 @@ function App() {
     let a= tasks.filter((a)=> a.user_id === currentUser[0].id)
     console.log(typeof(a))
   }
+
+  function handleNewLogin(e)
+  {
+    e.preventDefault()
+    console.log(e.target[0].value)
+    fetch('http://localhost:9296/users',{
+      method: 'POST',
+      headers: {
+         'Content-Type': 'application/json',
+      } ,
+      body:JSON.stringify(
+    {first_name:e.target[0].value,
+      last_name:e.target[1].value,
+      password:e.target[2].value
+
+    })})
+    .then(r=> r.json())
+    .then(data => console.log(data))
+   
+  }
   
 
   return (
@@ -62,7 +82,7 @@ function App() {
     <NavBar/>
     <Switch>
     <Route exact path = "/UserForm">
-  <UserForm handleSubmit ={manageSubmit} > Hello</UserForm>
+  <UserForm handleSubmit ={manageSubmit} handleNewLogin={handleNewLogin}> Hello</UserForm>
   </Route>
     <Route exact path = "/User">
   <User user = {currentUser.length>0? currentUser[0].first_name: null} > </User>
