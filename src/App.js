@@ -44,19 +44,27 @@ function App() {
   function manageSubmit(e)
   {
     e.preventDefault()
-    console.log(users)
 
-   let matchingUser = users.filter((a)=> a.first_name === e.target[0].value && e.target[1].value === a.last_name && e.target[2].value === a.password)
-  if(matchingUser.length!==0)
-  {
+    fetch('http://localhost:9295/users?' + new URLSearchParams({
+      first_name: e.target[0].value,
+      last_name : e.target[1].value,
+      password : e.target[2].value
+
+    }))
+    .then(r=> console.log(r.json()))
+    .then(data => console.log(data))
     
-    let a = tasks.filter((a)=> a.user_id === matchingUser[0].id)
-    setCurrentTasks(a)
-    a.forEach((b)=> console.log(b.name))
+  
+  //  let matchingUser = users.filter((a)=> a.first_name === e.target[0].value && e.target[1].value === a.last_name && e.target[2].value === a.password)
+  // if(matchingUser.length!==0)
+  // {
+    
+  //   let a = tasks.filter((a)=> a.user_id === matchingUser[0].id)
+  //   setCurrentTasks(a)
+  //   a.forEach((b)=> console.log(b.name))
 
   
-  }
-  console.log(currentTasks)
+  // }
 
   }
 
