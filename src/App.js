@@ -47,14 +47,18 @@ function App() {
     }))
     .then(r=> r.json())
     .then(data => setCurrentUser(data))
+
+
+    if(currentUser.length>0)
+  {
+    let a= tasks.filter((a)=> a.user_id === currentUser[0].id)
+    setCurrentTasks(a)
+    console.log(currentTasks)
+  }
   }
 
   console.log(currentUser)
-  if(currentUser.length>0)
-  {
-    let a= tasks.filter((a)=> a.user_id === currentUser[0].id)
-    console.log(typeof(a))
-  }
+  
 
   function handleNewLogin(e)
   {
@@ -85,7 +89,7 @@ function App() {
   <UserForm handleSubmit ={manageSubmit} handleNewLogin={handleNewLogin}> Hello</UserForm>
   </Route>
     <Route exact path = "/User">
-  <User user = {currentUser.length>0? currentUser[0].first_name: null} > </User>
+  <User user = {currentUser.length>0? currentUser[0].first_name: null}> </User>
   </Route>
   
   </Switch>

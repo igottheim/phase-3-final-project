@@ -5,12 +5,11 @@ import UserForm from "./UserForm";
 
 function User({user}){
 
-   
-
     return (
         <>
         <h1 id= "userTitle"> USERS </h1>
         <div> {user}</div>
+       
         </>
     )
 
