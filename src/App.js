@@ -11,6 +11,7 @@ function App() {
   
   const [users, setUsers] = useState([])
   const [tasks, setTasks] = useState([])
+  const [currentTasks, setCurrentTasks] = useState([])
 
 
 
@@ -45,10 +46,14 @@ function App() {
     console.log(users)
 
    let matchingUser = users.filter((a)=> a.first_name === e.target[0].value && e.target[1].value === a.last_name && e.target[2].value === a.password)
-   console.log(matchingUser)
-  console.log(e.target[0].value)
-  console.log(e.target[1].value)
-  console.log(e.target[2].value)
+  if(matchingUser.length!==0)
+  {
+    
+    let a = tasks.filter((a)=> a.user_id === matchingUser[0].id)
+    a.forEach((b)=> console.log(b.name))
+
+  
+  }
 
 
   }
@@ -57,8 +62,11 @@ function App() {
     <>
     <NavBar/>
     <Switch>
-    <Route path = "/User">
+    <Route exact path = "/User">
   <User users = {users} handleClick={handleClick}/>
+  </Route>
+  <Route exact path = "/User/:id">
+  <h1>Hello</h1>
   </Route>
   <Route path = "/UserForm">
   <UserForm handleSubmit ={manageSubmit} > Hello</UserForm>
