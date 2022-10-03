@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap"
 function UserForm({handleSubmit}){
 
     return(
+      <>
     <Form onSubmit={(e)=> handleSubmit(e)}>
     <label>
       First Name:
@@ -20,6 +21,26 @@ function UserForm({handleSubmit}){
         Login
       </Button>
   </Form>
+
+
+<Form onSubmit={(e)=> handleSubmit(e)}>
+<label>
+  First Name:
+  <input type="text" name="name" />
+</label>
+<label>
+  Last Name:
+  <input type="text" name="name" />
+</label>
+<label>
+  Password
+  <input type="text" name="name" />
+</label>
+<Button className= "button" variant="primary" type="submit">
+    Create New Login
+  </Button>
+</Form>
+</>
     )
 
 

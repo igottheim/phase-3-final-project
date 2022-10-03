@@ -5,6 +5,7 @@ import User from './User';
 import UserForm from './UserForm';
 import NavBar from './NavBar';
 import { Switch,Route } from 'react-router-dom';
+import UserTasks from './UserTasks';
 
 
 function App() {
@@ -50,11 +51,12 @@ function App() {
   {
     
     let a = tasks.filter((a)=> a.user_id === matchingUser[0].id)
+    setCurrentTasks(a)
     a.forEach((b)=> console.log(b.name))
 
   
   }
-
+  console.log(currentTasks)
 
   }
 
@@ -66,7 +68,7 @@ function App() {
   <User users = {users} handleClick={handleClick}/>
   </Route>
   <Route exact path = "/User/:id">
-  <h1>Hello</h1>
+  <UserTasks currentTasks={currentTasks}/>
   </Route>
   <Route path = "/UserForm">
   <UserForm handleSubmit ={manageSubmit} > Hello</UserForm>
