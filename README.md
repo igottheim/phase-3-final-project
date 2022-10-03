@@ -1,3 +1,21 @@
+Project Get Your Stuff Done
+
+Purpose of Application: To allow users to categorize and prioritize their tasks, specifically around the house. Users can create new tasks, delete tasks, update tasks, and move tasks to specific locations around the house.
+
+API Data
+Users
+Tasks
+Categories
+
+Users have many tasks. Users have many categories, through tasks.
+Categories have many tasks. Categories have many users, through tasks
+
+Tasks belongs to a user. Tasks belong to a category
+
+The tasks will have full CRUD capabilities. Users and Categories can be added, and deleted.
+
+React Front has been built to work with Sinatra backend to implement all crud elements. CSS styling will make the project appealing.
+
 # Getting Started with Create React App
 
 
