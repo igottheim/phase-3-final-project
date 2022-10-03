@@ -1,10 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from 'react';
+import User from './User';
 
 function App() {
   
-  const [hikes, setHikes] = useState([])
+  const [users, setUsers] = useState([])
 
 
 
@@ -12,16 +13,22 @@ function App() {
   useEffect(()=>{
   fetch('http://localhost:9294/users')
   .then(r=> r.json())
-  .then(data => setHikes(data))
+  .then(data => setUsers(data))
   }
   ,[])
 
-  console.log(hikes)
- 
-  let new_array = hikes.map((a) => <h1>{a.first_name} {a.last_name} </h1>)
+  console.log(users)
+  
+  function handleClick(a)
+  {
+
+      console.log(a.first_name)
+  }
 
   return (
-   <h1> Users = {new_array} </h1>
+  //  <h1> Users = {new_array} </h1>
+
+  <User users = {users} handleClick={handleClick}/>
   );
 }
 
