@@ -180,6 +180,7 @@ function addNewTask(e)
   console.log(array)
  
   let newObj = {
+    id: tasks[tasks.length-1].id+1,
     category_id:array,
     name:e.target[1].value,
     user_id: currentUser[0].id,
