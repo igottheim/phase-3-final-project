@@ -34,7 +34,7 @@ function App() {
   
   
   
-//SUBMISSION OF NEW USER
+//SUBMISSION OF CURRENT USER
   function manageSubmit(e)
   {
     e.preventDefault()
@@ -54,8 +54,7 @@ function App() {
         if(data.length>0)
         {
           setCurrentTasks(tasks.filter((a)=> a.user_id === data[0].id))
-          console.log(tasks.filter((a)=> a.user_id === data[0].id))
-          console.log(data)
+        
         }
           else{
             alert("The name and password is not associated with a current account. Please try again or create a login.")
