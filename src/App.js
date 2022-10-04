@@ -34,7 +34,7 @@ function App() {
   
   
   
-
+//SUBMISSION OF NEW USER
   function manageSubmit(e)
   {
     e.preventDefault()
@@ -65,7 +65,7 @@ function App() {
 }
 
   
-// handle new login
+// LOGIN ATTEMPT
   function handleNewLogin(e)
   {
     e.preventDefault()
@@ -89,6 +89,27 @@ function App() {
     alert("Please enter first name, last name, and password")
   }
 }
+
+// DELETE TASK
+function handleDelete(e){
+console.log(e)
+  fetch(`http://localhost:9296/tasks/${e.id}`,
+  {method:"DELETE",
+  }
+  )
+  .then((r)=>r.json())
+  .then(()=>
+  {
+    let new_array = tasks.filter((a)=> a.id !== e.id)
+
+    setTasks([...new_array])
+    console.log(tasks)
+
+}
+) 
+}
+
+//UPDATE PRIORITY
   
 
   return (
@@ -99,7 +120,7 @@ function App() {
   <UserForm handleSubmit ={manageSubmit} handleNewLogin={handleNewLogin}> Hello</UserForm>
   </Route>
     <Route exact path = "/User">
-  <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks}> </User>
+  <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks} handleDelete ={handleDelete}> </User>
   </Route>
   
   </Switch>
