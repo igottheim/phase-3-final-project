@@ -14,6 +14,7 @@ function App() {
   const [tasks, setTasks] = useState([])
   const [currentTasks, setCurrentTasks] = useState([])
   const [currentUser, setCurrentUser] = useState([])
+  const [categories, setCategories] = useState([])
 
 
 
@@ -31,6 +32,13 @@ function App() {
     .then(data => setTasks(data))
     }
     ,[])
+
+    useEffect(()=>{
+      fetch('http://localhost:9296/categories')
+      .then(r=> r.json())
+      .then(data => setCategories(data))
+      }
+      ,[])
   
   
   
@@ -163,8 +171,40 @@ function downPriority(a)
       .then(r => r.json())
       .then (setTasks(newTaskArray))
     }
-    
+}
+
+function addNewTask(e)
+{
+  e.preventDefault()
+  let array = categories.find((a)=> a.name === e.target[0].value).id
+  console.log(array)
+ 
+  let newObj = {
+    category_id:array,
+    name:e.target[1].value,
+    user_id: currentUser[0].id,
+    priority:parseInt(e.target[2].value),
+    "completed?": false
+  }
+  console.log(newObj)
+  console.log(currentUser[0].id)
   
+  if(e.target[1].value!=="")
+  {
+    fetch('http://localhost:9296/tasks?' + new URLSearchParams({newObj}),{
+      method: 'POST',
+      headers: {
+         'Content-Type': 'application/json',
+      } ,
+      body:JSON.stringify(newObj)})
+    .then(r=> r.json())
+    .then(()=>
+      
+      setCurrentTasks([...currentTasks, newObj]))
+      setTasks([...tasks,newObj])
+  }
+
+
 }
   
 
@@ -176,7 +216,7 @@ function downPriority(a)
   <UserForm handleSubmit ={manageSubmit} handleNewLogin={handleNewLogin}> Hello</UserForm>
   </Route>
     <Route exact path = "/User">
-  <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority}> </User>
+  <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority} handleSubmit={addNewTask}> </User>
   </Route>
   
   </Switch>
