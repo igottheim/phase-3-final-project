@@ -92,24 +92,92 @@ function App() {
 
 // DELETE TASK
 function handleDelete(e){
-console.log(e)
-  fetch(`http://localhost:9296/tasks/${e.id}`,
-  {method:"DELETE",
-  }
-  )
-  .then((r)=>r.json())
-  .then(()=>
+  const deleteLike =  tasks.filter((item)=> e.id === item.id)
+
+  const newTaskArray = tasks.map((item)=>
   {
-    let new_array = tasks.filter((a)=> a.id !== e.id)
+   if (item.id === deleteLike.id)
+   {
+     return null
+   }
+   else {
+     return item
+   }})
 
-    setTasks([...new_array])
-    console.log(tasks)
 
-}
-) 
+  fetch(`http://localhost:9296/tasks/${e.id}`,
+  {method:"DELETE", 
+  body:JSON.stringify(e),
+  })
+  .then((r)=>r.json())
+  .then (setTasks(newTaskArray))
+
+  console.log(newTaskArray)
+
 }
 
 //UPDATE PRIORITY
+function upPriority(a)
+{
+
+  const updateLike =  tasks.filter((item)=> a.id === item.id)
+  console.log(updateLike[0].priority+=1)
+
+  const newTaskArray = tasks.map((item)=>
+  {
+   if (item.id === updateLike.id)
+   {
+     return updateLike
+   }
+   else {
+
+     return item
+   }})
+
+   fetch(`http://localhost:9296/tasks/${a.id}`,
+        {
+          method: "PATCH",
+          headers:{"Content-Type":"application/json",
+        },    
+        body:JSON.stringify(a),
+      })
+      .then(r => r.json())
+      .then (setTasks(newTaskArray))
+}
+
+function downPriority(a)
+{
+  
+
+  const updateLike =  tasks.filter((item)=> a.id === item.id)
+  if(updateLike[0].priority>0)
+  {
+  console.log(updateLike[0].priority-=1)
+ 
+  const newTaskArray = tasks.map((item)=>
+  {
+   if (item.id === updateLike.id)
+   {
+     return updateLike
+   }
+   else {
+
+     return item
+   }})
+
+   fetch(`http://localhost:9296/tasks/${a.id}`,
+        {
+          method: "PATCH",
+          headers:{"Content-Type":"application/json",
+        },    
+        body:JSON.stringify(a),
+      })
+      .then(r => r.json())
+      .then (setTasks(newTaskArray))
+    }
+    
+  
+}
   
 
   return (
@@ -120,7 +188,7 @@ console.log(e)
   <UserForm handleSubmit ={manageSubmit} handleNewLogin={handleNewLogin}> Hello</UserForm>
   </Route>
     <Route exact path = "/User">
-  <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks} handleDelete ={handleDelete}> </User>
+  <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority}> </User>
   </Route>
   
   </Switch>
