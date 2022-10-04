@@ -38,7 +38,8 @@ function App() {
   function manageSubmit(e)
   {
     e.preventDefault()
-
+    if(e.target[0].value!==""&& e.target[1].value!==""&& e.target[2].value!=="")
+    {
     fetch('http://localhost:9296/users?' + new URLSearchParams({
       first_name: e.target[0].value,
       last_name : e.target[1].value,
@@ -48,22 +49,28 @@ function App() {
     .then(r=> r.json())
     .then(data => setCurrentUser(data))
 
-
     if(currentUser.length>0)
   {
     let a= tasks.filter((a)=> a.user_id === currentUser[0].id)
     setCurrentTasks(a)
     console.log(currentTasks)
   }
+    else{
+      alert("The name and password is not associated with a current account. Please try again or create a login.")
+    }
   }
+  else{
+    alert("Please enter a first name, last name, and password for an existing user.")
+  }
+}
 
-  console.log(currentUser)
   
-
+// handle new login
   function handleNewLogin(e)
   {
     e.preventDefault()
-    console.log(e.target[0].value)
+  if(e.target[0].value!==""&& e.target[1].value!==""&& e.target[2].value!=="")
+  {
     fetch('http://localhost:9296/users',{
       method: 'POST',
       headers: {
@@ -77,8 +84,11 @@ function App() {
     })})
     .then(r=> r.json())
     .then(data => console.log(data))
-   
   }
+  else{
+    alert("Please enter first name, last name, and password")
+  }
+}
   
 
   return (
@@ -89,7 +99,7 @@ function App() {
   <UserForm handleSubmit ={manageSubmit} handleNewLogin={handleNewLogin}> Hello</UserForm>
   </Route>
     <Route exact path = "/User">
-  <User user = {currentUser.length>0? currentUser[0].first_name: null}> </User>
+  <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks}> </User>
   </Route>
   
   </Switch>
