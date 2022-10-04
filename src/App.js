@@ -92,27 +92,13 @@ function App() {
 
 // DELETE TASK
 function handleDelete(e){
-  const deleteLike =  tasks.filter((item)=> e.id === item.id)
-
-  const newTaskArray = tasks.map((item)=>
-  {
-   if (item.id === deleteLike.id)
-   {
-     return null
-   }
-   else {
-     return item
-   }})
-
-
+ 
   fetch(`http://localhost:9296/tasks/${e.id}`,
-  {method:"DELETE", 
-  body:JSON.stringify(e),
+  {method:"DELETE"
   })
   .then((r)=>r.json())
-  .then (setTasks(newTaskArray))
+  .then (()=>setTasks(tasks.filter((item)=> e.id !== item.id)))
 
-  console.log(newTaskArray)
 
 }
 
@@ -120,10 +106,10 @@ function handleDelete(e){
 function upPriority(a)
 {
 
-  const updateLike =  tasks.filter((item)=> a.id === item.id)
+  let updateLike =  tasks.filter((item)=> a.id === item.id)
   console.log(updateLike[0].priority+=1)
 
-  const newTaskArray = tasks.map((item)=>
+  let newTaskArray = tasks.map((item)=>
   {
    if (item.id === updateLike.id)
    {
@@ -149,12 +135,12 @@ function downPriority(a)
 {
   
 
-  const updateLike =  tasks.filter((item)=> a.id === item.id)
+  let updateLike =  tasks.filter((item)=> a.id === item.id)
   if(updateLike[0].priority>0)
   {
   console.log(updateLike[0].priority-=1)
  
-  const newTaskArray = tasks.map((item)=>
+  let newTaskArray = tasks.map((item)=>
   {
    if (item.id === updateLike.id)
    {
