@@ -47,17 +47,22 @@ function App() {
 
     }))
     .then(r=> r.json())
-    .then(data => setCurrentUser(data))
-
-    if(currentUser.length>0)
-  {
-    let a= tasks.filter((a)=> a.user_id === currentUser[0].id)
-    setCurrentTasks(a)
-    console.log(currentTasks)
-  }
-    else{
-      alert("The name and password is not associated with a current account. Please try again or create a login.")
-    }
+    .then(data => 
+      
+      { setCurrentUser(data)
+      
+        if(data.length>0)
+        {
+          setCurrentTasks(tasks.filter((a)=> a.user_id === data[0].id))
+          console.log(tasks.filter((a)=> a.user_id === data[0].id))
+          console.log(data)
+        }
+          else{
+            alert("The name and password is not associated with a current account. Please try again or create a login.")
+          }
+      
+      
+      })
   }
   else{
     alert("Please enter a first name, last name, and password for an existing user.")
@@ -97,19 +102,17 @@ function handleDelete(e){
   {method:"DELETE"
   })
   .then((r)=>r.json())
-  .then (()=>setTasks(tasks.filter((item)=> e.id !== item.id)))
-
-
+  .then(()=> setCurrentTasks(currentTasks.filter((item)=> e.id !== item.id)))
 }
 
 //UPDATE PRIORITY
 function upPriority(a)
 {
 
-  let updateLike =  tasks.filter((item)=> a.id === item.id)
+  let updateLike =  currentTasks.filter((item)=> a.id === item.id)
   console.log(updateLike[0].priority+=1)
 
-  let newTaskArray = tasks.map((item)=>
+  let newTaskArray = currentTasks.map((item)=>
   {
    if (item.id === updateLike.id)
    {
@@ -135,12 +138,12 @@ function downPriority(a)
 {
   
 
-  let updateLike =  tasks.filter((item)=> a.id === item.id)
+  let updateLike =  currentTasks.filter((item)=> a.id === item.id)
   if(updateLike[0].priority>0)
   {
   console.log(updateLike[0].priority-=1)
  
-  let newTaskArray = tasks.map((item)=>
+  let newTaskArray = currentTasks.map((item)=>
   {
    if (item.id === updateLike.id)
    {
