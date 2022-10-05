@@ -90,27 +90,44 @@ function App() {
   function handleNewLogin(e)
   {
     e.preventDefault()
-  if(e.target[0].value!==""&& e.target[1].value!==""&& e.target[2].value!=="" && e.target[3].value!=="")
-  {
-    fetch('http://localhost:9295/users',{
-      method: 'POST',
-      headers: {
-         'Content-Type': 'application/json',
-      } ,
-      body:JSON.stringify(
-    {first_name:e.target[0].value,
-      last_name:e.target[1].value,
-      username:e.target[2].value,
-      password:e.target[3].value
 
-    })})
+    fetch('http://localhost:9295/usersFind?' + new URLSearchParams({
+   
+      username : e.target[2].value,
+    }))
     .then(r=> r.json())
-    .then(data => console.log(data))
-    alert("New Account Created!")
-  }
-  else{
-    alert("Please enter first name, last name, username, and password")
-  }
+    .then( (data) =>  {
+
+      if(data.length===0)
+      {
+        if(e.target[0].value!==""&& e.target[1].value!==""&& e.target[2].value!=="" && e.target[3].value!=="")
+        {
+          fetch('http://localhost:9295/users',{
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+            } ,
+            body:JSON.stringify(
+          {first_name:e.target[0].value,
+            last_name:e.target[1].value,
+            username:e.target[2].value,
+            password:e.target[3].value
+      
+          })})
+          .then(r=> r.json())
+          .then(data => console.log(data))
+          alert("New Account Created!")
+        }
+        else{
+          alert("Please enter first name, last name, username, and password")
+        } 
+      }
+      else
+      {
+        alert("USERNAME ALREADY EXISTS. PLEASE TRY AGAIN!")
+      }
+    } )
+
 }
 
 // DELETE TASK
