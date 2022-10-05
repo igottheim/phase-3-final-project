@@ -121,7 +121,7 @@ function App() {
       
           })})
           .then(r=> r.json())
-          .then(data => console.log(data))
+          .then( (data) => setCurrentUser(data))
           alert("New Account Created!")
         }
         else{
