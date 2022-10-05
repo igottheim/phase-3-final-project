@@ -27,7 +27,7 @@ function App() {
 
   //useEffect to pull information from db.json() file
   useEffect(()=>{
-  fetch('http://localhost:9295/users')
+  fetch('http://localhost:9295/users1')
   .then(r=> r.json())
   .then(data => setUsers(data))
   }
@@ -53,23 +53,29 @@ function App() {
   function manageSubmit(e)
   {
     e.preventDefault()
-    if(e.target[0].value!==""&& e.target[1].value!==""&& e.target[2].value!=="")
+    if(e.target[0].value!==""&& e.target[1].value!==""&& e.target[2].value!==""&& e.target[3].value!=="")
     {
     fetch('http://localhost:9295/users?' + new URLSearchParams({
       first_name: e.target[0].value,
       last_name : e.target[1].value,
-      username : e.target[2].value,
-      password : e.target[3].value
+      username: e.target[2].value,
+      password_digest : e.target[3].value
     }))
     .then(r=> r.json())
     .then(data => 
+      { 
+       
+        
       
-      { setCurrentUser(data)
-      
-        if(data.length>0)
+        if(data.length!==0)
         {
+         
+          setCurrentUser(data)
+          console.log(data)
+          console.log(currentUser)
           alert("Login Successful")
-          setCurrentTasks(tasks.filter((a)=> a.user_id === data[0].id))
+          setCurrentTasks(tasks.filter((a)=> a.user_id === data.id))
+          console.log(currentTasks)
         
         }
           else{
@@ -211,12 +217,12 @@ function addNewTask(e)
     id: tasks[tasks.length-1].id+1,
     category_id:array,
     name:e.target[1].value,
-    user_id: currentUser[0].id,
+    user_id: currentUser.id,
     priority:parseInt(e.target[2].value),
     "completed?": false
   }
   console.log(newObj)
-  console.log(currentUser[0].id)
+  console.log(currentUser.id)
   
   if(e.target[1].value!=="")
   {
@@ -243,13 +249,13 @@ function addNewTask(e)
         <Switch>
 
           <Route path="/" exact component={Home} >
-            <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority} handleSubmit={addNewTask}> </User>
+            <User user = {currentUser} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority} handleSubmit={addNewTask}> </User>
           </Route>
 
           <Route path="/about" component={About} />
 
           <Route path="/contactus" component={ContactUs} >
-          <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority} handleSubmit={addNewTask}> </User>
+          <User user = {currentUser} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority} handleSubmit={addNewTask}> </User>
           </Route>
 
           <Route path="/services" component={Services}>
