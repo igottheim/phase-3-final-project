@@ -5,7 +5,6 @@ function NavBar()
 
     return(
         <div className="navBarLink">
-       
         <NavLink to = "/UserForm" className='navBarLink'>  UserForm  </NavLink>
         <span></span>
         <NavLink to = "/User" className='navBarLink'>  UserLogin  </NavLink>

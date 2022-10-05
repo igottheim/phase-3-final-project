@@ -15,7 +15,11 @@ function UserForm({handleSubmit, handleNewLogin}){
       <input type="text" name="name" />
     </label>
     <label>
-      Password
+      Username:
+      <input type="text" name="name" />
+    </label>
+    <label>
+      Password:
       <input type="text" name="name" />
     </label>
     <Button className= "button" variant="primary" type="submit">
@@ -35,7 +39,11 @@ function UserForm({handleSubmit, handleNewLogin}){
       <input type="text" name="name" />
     </label>
     <label>
-      Password
+      Username:
+      <input type="text" name="name" />
+    </label>
+    <label>
+      Password:
       <input type="text" name="name" />
     </label>
     <Button className= "button" variant="primary" type="submit">

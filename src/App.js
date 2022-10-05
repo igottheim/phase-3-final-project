@@ -51,8 +51,8 @@ function App() {
     fetch('http://localhost:9296/users?' + new URLSearchParams({
       first_name: e.target[0].value,
       last_name : e.target[1].value,
-      password : e.target[2].value
-
+      username : e.target[2].value,
+      password : e.target[3].value
     }))
     .then(r=> r.json())
     .then(data => 
@@ -61,6 +61,7 @@ function App() {
       
         if(data.length>0)
         {
+          alert("Login Successful")
           setCurrentTasks(tasks.filter((a)=> a.user_id === data[0].id))
         
         }
@@ -70,9 +71,10 @@ function App() {
       
       
       })
+  
   }
   else{
-    alert("Please enter a first name, last name, and password for an existing user.")
+    alert("Please enter a first name, last name, username, and password for an existing user.")
   }
 }
 
@@ -81,7 +83,7 @@ function App() {
   function handleNewLogin(e)
   {
     e.preventDefault()
-  if(e.target[0].value!==""&& e.target[1].value!==""&& e.target[2].value!=="")
+  if(e.target[0].value!==""&& e.target[1].value!==""&& e.target[2].value!=="" && e.target[3].value!=="")
   {
     fetch('http://localhost:9296/users',{
       method: 'POST',
@@ -91,14 +93,16 @@ function App() {
       body:JSON.stringify(
     {first_name:e.target[0].value,
       last_name:e.target[1].value,
-      password:e.target[2].value
+      username:e.target[2].value,
+      password:e.target[3].value
 
     })})
     .then(r=> r.json())
     .then(data => console.log(data))
+    alert("New Account Created!")
   }
   else{
-    alert("Please enter first name, last name, and password")
+    alert("Please enter first name, last name, username, and password")
   }
 }
 
