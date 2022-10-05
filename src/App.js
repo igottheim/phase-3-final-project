@@ -11,7 +11,8 @@ import SignUp from './Pages/signup';
 import { useState, useEffect } from 'react';
 import User from './User';
 import UserForm from './UserForm';
-import UserTasks from './UserTasks';
+
+import UserLoginForm from './UserLoginForm';
 
 
 
@@ -234,10 +235,14 @@ function addNewTask(e)
           <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority} handleSubmit={addNewTask}> </User>
           </Route>
 
-          <Route path="/services" component={Services} />
+          <Route path="/services" component={Services}>
+          <UserForm handleSubmit ={manageSubmit} /> 
+          
+          </Route>
 
           <Route path="/signup" exact component={SignUp}>
-            <UserForm handleSubmit ={manageSubmit} handleNewLogin={handleNewLogin}/> 
+          <UserLoginForm handleNewLogin={handleNewLogin}/> 
+            
           </Route>
 
         </Switch>

@@ -1,6 +1,6 @@
 import { Form, Button } from "react-bootstrap"
 
-function UserForm({handleSubmit, handleNewLogin}){
+function UserForm({handleSubmit}){
 
  
     return(
@@ -28,28 +28,6 @@ function UserForm({handleSubmit, handleNewLogin}){
   </Form>
 
 
-
-  <Form onSubmit={(e)=> handleNewLogin(e)}>
-    <label>
-      First Name:
-      <input type="text" name="name" />
-    </label>
-    <label>
-      Last Name:
-      <input type="text" name="name" />
-    </label>
-    <label>
-      Username:
-      <input type="text" name="name" />
-    </label>
-    <label>
-      Password:
-      <input type="text" name="name" />
-    </label>
-    <Button className= "button" variant="primary" type="submit">
-        Submit New Login
-      </Button>
-  </Form>
 
 
 </>
