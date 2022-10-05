@@ -20,7 +20,7 @@ function UserForm({handleSubmit}){
     </label>
     <label>
       Password:
-      <input type="text" name="name" />
+      <input type="password" name="name" />
     </label>
     <Button className= "button" variant="primary" type="submit">
         Login

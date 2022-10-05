@@ -7,6 +7,7 @@ import About from './Pages/about';
 import ContactUs from './Pages/contact';
 import Services from './Pages/services';
 import SignUp from './Pages/signup';
+import TodoList from './ToDoComponents/TodoList';
 
 import { useState, useEffect } from 'react';
 import User from './User';
@@ -243,13 +244,15 @@ function addNewTask(e)
         <Switch>
 
           <Route path="/" exact component={Home} >
-            <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority} handleSubmit={addNewTask}> </User>
+            <div className='todo-app'>
+              <TodoList />
+            </div>          
           </Route>
 
           <Route path="/about" component={About} />
 
           <Route path="/contactus" component={ContactUs} >
-          <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority} handleSubmit={addNewTask}> </User>
+            <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority} handleSubmit={addNewTask}> </User>
           </Route>
 
           <Route path="/services" component={Services}>
