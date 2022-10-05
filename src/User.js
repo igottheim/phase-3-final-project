@@ -43,14 +43,14 @@ return (
 <span> ADD A NEW TASK!</span>
         <Form onSubmit={(e)=> handleSubmit(e)}>
         <select name="selectList" id="selectList">
-        <option value="Bathroom">Bathroom</option>
-      <option value="Kitchen">Kitchen</option>
+        <option value="Bathroom">Bathroom</option>
+      <option value="Kitchen">Kitchen</option>
         <option value="Master Bedroom">Master Bedroom</option>
         <option value="Guest BedRoom">Guest BedRoom</option>
-      <option value="Patio">Patio</option>
+      <option value="Patio">Patio</option>
         <option value="Garage">Garage</option>
         <option value="Basement">Basement</option>
-      <option value="Frontyard">Frontyard</option>
+      <option value="Frontyard">Frontyard</option>
         <option value="Backyard">Backyard</option>
         <option value="Car">Car</option>
     </select>
@@ -59,14 +59,14 @@ return (
       <input type="text" name="name" />
     </label>
     <select name="selectList" id="selectList">
-        <option value="1">1</option>
-      <option value="2">2</option>
+        <option value="1">1</option>
+      <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
-      <option value="5">5</option>
+      <option value="5">5</option>
         <option value="6">6</option>
         <option value="7">7</option>
-      <option value="8">8</option>
+      <option value="8">8</option>
         <option value="9">9</option>
         <option value="10">10</option>
     </select>
