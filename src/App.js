@@ -1,15 +1,22 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Navbar from './Components/Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './Pages';
+import About from './Pages/about';
+import ContactUs from './Pages/contact';
+import Services from './Pages/services';
+import SignUp from './Pages/signup';
+
 import { useState, useEffect } from 'react';
 import User from './User';
 import UserForm from './UserForm';
-import NavBar from './NavBar';
-import { Switch,Route } from 'react-router-dom';
-import UserTasks from './UserTasks';
+
+import UserLoginForm from './UserLoginForm';
+
 
 
 function App() {
-  
   const [users, setUsers] = useState([])
   const [tasks, setTasks] = useState([])
   const [currentTasks, setCurrentTasks] = useState([])
@@ -20,21 +27,21 @@ function App() {
 
   //useEffect to pull information from db.json() file
   useEffect(()=>{
-  fetch('http://localhost:9296/users')
+  fetch('http://localhost:9295/users')
   .then(r=> r.json())
   .then(data => setUsers(data))
   }
   ,[])
 
   useEffect(()=>{
-    fetch('http://localhost:9296/tasks')
+    fetch('http://localhost:9295/tasks')
     .then(r=> r.json())
     .then(data => setTasks(data))
     }
     ,[])
 
     useEffect(()=>{
-      fetch('http://localhost:9296/categories')
+      fetch('http://localhost:9295/categories')
       .then(r=> r.json())
       .then(data => setCategories(data))
       }
@@ -48,7 +55,7 @@ function App() {
     e.preventDefault()
     if(e.target[0].value!==""&& e.target[1].value!==""&& e.target[2].value!=="")
     {
-    fetch('http://localhost:9296/users?' + new URLSearchParams({
+    fetch('http://localhost:9295/users?' + new URLSearchParams({
       first_name: e.target[0].value,
       last_name : e.target[1].value,
       username : e.target[2].value,
@@ -85,7 +92,7 @@ function App() {
     e.preventDefault()
   if(e.target[0].value!==""&& e.target[1].value!==""&& e.target[2].value!=="" && e.target[3].value!=="")
   {
-    fetch('http://localhost:9296/users',{
+    fetch('http://localhost:9295/users',{
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
@@ -109,7 +116,7 @@ function App() {
 // DELETE TASK
 function handleDelete(e){
  
-  fetch(`http://localhost:9296/tasks/${e.id}`,
+  fetch(`http://localhost:9295/tasks/${e.id}`,
   {method:"DELETE"
   })
   .then((r)=>r.json())
@@ -134,7 +141,7 @@ function upPriority(a)
      return item
    }})
 
-   fetch(`http://localhost:9296/tasks/${a.id}`,
+   fetch(`http://localhost:9295/tasks/${a.id}`,
         {
           method: "PATCH",
           headers:{"Content-Type":"application/json",
@@ -165,7 +172,7 @@ function downPriority(a)
      return item
    }})
 
-   fetch(`http://localhost:9296/tasks/${a.id}`,
+   fetch(`http://localhost:9295/tasks/${a.id}`,
         {
           method: "PATCH",
           headers:{"Content-Type":"application/json",
@@ -196,7 +203,7 @@ function addNewTask(e)
   
   if(e.target[1].value!=="")
   {
-    fetch('http://localhost:9296/tasks?' + new URLSearchParams({newObj}),{
+    fetch('http://localhost:9295/tasks?' + new URLSearchParams({newObj}),{
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
@@ -213,21 +220,34 @@ function addNewTask(e)
 }
   
 
-  return (
-    <>
-    <NavBar/>
-    <Switch>
-    <Route exact path = "/UserForm">
-  <UserForm handleSubmit ={manageSubmit} handleNewLogin={handleNewLogin}> Hello</UserForm>
-  </Route>
-    <Route exact path = "/User">
-  <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority} handleSubmit={addNewTask}> </User>
-  </Route>
-  
-  </Switch>
-    </>
+  return(
+    <Router>
+      <Navbar />
+        <Switch>
 
-  )
+          <Route path="/" exact component={Home} >
+            <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority} handleSubmit={addNewTask}> </User>
+          </Route>
+
+          <Route path="/about" component={About} />
+
+          <Route path="/contactus" component={ContactUs} >
+          <User user = {currentUser.length>0? currentUser[0].first_name: null} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority} handleSubmit={addNewTask}> </User>
+          </Route>
+
+          <Route path="/services" component={Services}>
+          <UserForm handleSubmit ={manageSubmit} /> 
+          
+          </Route>
+
+          <Route path="/signup" exact component={SignUp}>
+          <UserLoginForm handleNewLogin={handleNewLogin}/> 
+            
+          </Route>
+
+        </Switch>
+    </Router>
+  );  
 }
 
 export default App;
