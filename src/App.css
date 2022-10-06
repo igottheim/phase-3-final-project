@@ -204,14 +204,21 @@
   }
   
   .delete-icon {
-    margin-right: 5px;
+    font-size: 30px;
     color: #fff;
   }
   
   .edit-icon {
+    margin-right: 8px;
     color: #fff;
   }
 
   .up-icon {
+    margin-right: 8px;
+    color: #fff;
+  }
+
+  .down-icon {
+    margin-right: 5px;
     color: #fff;
   }
