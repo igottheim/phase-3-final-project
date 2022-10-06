@@ -20,12 +20,12 @@ const Navbar = () => {
                     About
                 </NavLink>
 
-                <NavLink to="/services" activeStyle>
-                    Services
+                <NavLink to="/contactus" activeStyle>
+                    UserLoginPage
                 </NavLink>
 
-                <NavLink to="/contactus" activeStyle>
-                    Contact Us
+                <NavLink to="/services" activeStyle>
+                    Login
                 </NavLink>
 
                 <NavLink to="/signup" activeStyle>
@@ -33,14 +33,6 @@ const Navbar = () => {
                 </NavLink>
 
             </NavMenu>
-
-            <NavBtn>
-
-                <NavBtnLink to="/login">
-                    Login
-                </NavBtnLink>
-
-            </NavBtn>
 
         </Nav>
     </>

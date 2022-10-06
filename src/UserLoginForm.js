@@ -17,7 +17,7 @@ function UserLoginForm({handleNewLogin})
   </label>
   <label>
     Password:
-    <input type="text" name="name" />
+    <input type="password" name="name" />
   </label>
   <Button className= "button" variant="primary" type="submit">
       Submit New Login
