@@ -51,13 +51,11 @@ function App() {
   function manageSubmit(e)
   {
     e.preventDefault()
-    if(e.target[0].value!==""&& e.target[1].value!==""&& e.target[2].value!==""&& e.target[3].value!=="")
+    if(e.target[0].value!==""&& e.target[1].value!=="")
     {
     fetch('http://localhost:9295/users?' + new URLSearchParams({
-      first_name: e.target[0].value,
-      last_name : e.target[1].value,
-      username: e.target[2].value,
-      password_digest : e.target[3].value
+      username: e.target[0].value,
+      password_digest : e.target[1].value
     }))
     .then(r=> r.json())
     .then(data => 
@@ -211,14 +209,13 @@ function addNewTask(e)
 {
   e.preventDefault()
   let array = categories.find((a)=> a.name === e.target[0].value).id
-  console.log(array)
- 
+
   let newObj = {
     id: tasks[tasks.length-1].id+1,
     category_id:array,
-    name:e.target[1].value,
+    name:e.target[2].value,
     user_id: currentUser.id,
-    priority:parseInt(e.target[2].value),
+    priority:parseInt(e.target[1].value),
     "completed?": false
   }
   console.log(newObj)
@@ -250,7 +247,9 @@ function addNewTask(e)
         <Switch>
 
         <Route path="/" exact component={Home} >
-          <User user = {currentUser} tasks ={currentTasks} handleDelete ={handleDelete} upPriority={upPriority} downPriority={downPriority} handleSubmit={addNewTask}> </User>
+        <div className='user-app'>
+          <TodoList />
+        </div>     
         </Route>
 
         <Route path="/about" component={About} />

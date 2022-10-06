@@ -7,14 +7,6 @@ function UserForm({handleSubmit}){
       <>
     <Form onSubmit={(e)=> handleSubmit(e)}>
     <label>
-      First Name:
-      <input type="text" name="name" />
-    </label>
-    <label>
-      Last Name:
-      <input type="text" name="name" />
-    </label>
-    <label>
       Username:
       <input type="text" name="name" />
     </label>

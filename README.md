@@ -1,90 +1,49 @@
-Project Get Your Stuff Done
+Project: TASKFORCE
 
-Purpose of Application: To allow users to categorize and prioritize their tasks, specifically around the house. Users can create new tasks, delete tasks, update tasks, and move tasks to specific locations around the house.
+Purpose of Application: TASKFORCE is an application to allow users to categorize and prioritize their tasks, specifically around the house. Users can create new tasks, delete tasks, update tasks, and move tasks to specific locations around the house. 
 
-API Data
-Users
-Tasks
-Categories
+Ruby Backend setup
 
-Users have many tasks. Users have many categories, through tasks.
-Categories have many tasks. Categories have many users, through tasks
+Tables
+    1. Tasks
+        Columns: (id,name,user_id,category_id,priority,completed?)
+    2. Categories
+        Columns:(id, name)
+    3. User
+        Columns: (id, first_name, last_name, password, username)
+        The password is hashed within the backend to prevent hackers from stealing information!
 
-Tasks belongs to a user. Tasks belong to a category
+Relationships
+    Users have many tasks. Users have many categories, through tasks.
+    Categories have many tasks. Categories have many users, through tasks
+    Tasks belongs to a user. Tasks belong to a category
 
-The tasks will have full CRUD capabilities. Users and Categories can be added, and deleted.
+There are 11 set categories that users can add to:
+    1	Bathroom
+    2	Kitchen
+    3	Living Room
+    4	Master Bedroom
+    5	Guest BedRoom
+    6	Patio
+    7	Garage
+    8	Basement
+    9	Frontyard
+    10	Backyard
+    11	Car
 
-React Front has been built to work with Sinatra backend to implement all crud elements. CSS styling will make the project appealing.
 
-# Getting Started with Create React App
+The tasks will have full CRUD capabilities. Tasks can be added, deleted, and modified based on priority. 
+
+Users can be added to the database with a new login.
 
 
-HELLO README yolo
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The front end has been built with React. The backend has been built with Ruby, implementing Sinatra
 
-## Available Scripts
 
-In the project directory, you can run:
+To Start Backend
+bundle install(to install all gems)
+rake server (set at port 9295)
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To Start Frontend
+npm build
+npm start

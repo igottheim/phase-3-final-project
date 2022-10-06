@@ -25,11 +25,30 @@
     border-radius: 10px;
     padding-bottom: 32px;
   }
+
+  .user-app {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 900px;
+    min-height: 600px;
+    background: #161a2b;
+    text-align: center;
+    margin: 128px auto;
+    border-radius: 10px;
+    padding-bottom: 32px;
+  }
   
   h1 {
     margin: 32px 0;
     color: #fff;
     font-size: 24px;
+  }
+
+  h2 {
+    margin: 32px auto;
+    color: #fff;
+    font-size: 20px;
   }
   
   .complete {
@@ -47,6 +66,46 @@
     border: 2px solid #5d0cff;
     outline: none;
     width: 320px;
+    background: transparent;
+    color: #fff;
+  }
+
+  .todo-input2 {
+    padding: 14px 32px 14px 16px;
+    border-radius: 4px 0 0 4px;
+    border: 2px solid #5d0cff;
+    outline: none;
+    width: 320px;
+    background: transparent;
+    color: #fff;
+  }
+
+  .user-input3 {
+    padding: 14px 32px 14px 16px;
+    border-radius: 0px 0 0 0px;
+    border: 2px solid #5d0cff;
+    outline: none;
+    width: 250px;
+    background: transparent;
+    color: #fff;
+  }
+  
+  .user-input-num {
+    padding: 14px 32px 14px 16px;
+    border-radius: 0px 0 0 0px;
+    border: 1px solid #5d0cff;
+    outline: none;
+    width: 90px;
+    background: transparent;
+    color: #fff;
+  }
+
+  .user-input-num2 {
+    padding: 14px 32px 14px 16px;
+    border-radius: 4px 0 0 4px;
+    border: 1px solid #5d0cff;
+    outline: none;
+    width: 175px;
     background: transparent;
     color: #fff;
   }
@@ -84,6 +143,13 @@
   }
   
   .todo-container {
+    padding: 14px 32px 14px 16px;
+    border-radius: 4px 0 0 4px;
+    border: 2px solid #5d0cff;
+    outline: none;
+    width: 600px;
+    background: transparent;
+    color: #fff;
     display: flex;
     flex-direction: row;
     position: relative;
@@ -143,5 +209,9 @@
   }
   
   .edit-icon {
+    color: #fff;
+  }
+
+  .up-icon {
     color: #fff;
   }
