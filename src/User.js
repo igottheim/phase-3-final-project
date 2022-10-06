@@ -3,11 +3,17 @@ import { Form, Button } from "react-bootstrap"
 import UserForm from "./UserForm";
 
 
-
+ 
 function User({user, tasks, handleDelete, upPriority, downPriority, handleSubmit}){
+  const [userName, setUserName] = useState(user?.first_name ?? '')
 
+  useEffect(() => {
+    console.log('User Change:', user);
+    setUserName(user?.first_name ?? '')
+  }, [user])
+
+  console.log(user)
   console.log(tasks)
-    
   
 let category1 = tasks.filter((b) => b.category_id === 1).map((a)=> <li key = {a.id}> {a.name} Priority: {a.priority} {a.category_id.name} <button onClick = {()=> upPriority(a)}> ⬆️</button> <button onClick = {()=> downPriority(a)}>⬇️</button><button onClick={()=> handleDelete(a)}>DELETE</button></li>)
 let category2 = tasks.filter((b) => b.category_id === 2).map((a)=> <li key = {a.id}>  {a.name} Priority: {a.priority} {a.category_id.name}   <button onClick = {()=> upPriority(a)}> ⬆️</button> <button onClick = {()=> downPriority(a)}>⬇️</button><button onClick={()=> handleDelete(a)}>DELETE</button></li>)
@@ -25,7 +31,7 @@ let category11 = tasks.filter((b) => b.category_id === 11).map((a)=> <li key = {
 return (
         <>
        
-        <div> Tasks for {user}
+        <div> Tasks for {userName}
         <ul>BATHROOM: {category1}</ul>
         <ul>KITCHEN: {category2}</ul>
         <ul>LIVING ROOM: {category3}</ul>
