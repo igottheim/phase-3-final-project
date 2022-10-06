@@ -121,7 +121,9 @@ function App() {
       
           })})
           .then(r=> r.json())
-          .then( (data) => setCurrentUser(data))
+          .then( (data) => {setCurrentUser(data)
+            setCurrentTasks([])
+          })
           alert("New Account Created!")
         }
         else{
