@@ -20,7 +20,7 @@ function UserLoginForm({handleNewLogin})
   </label>
   <label>
 
-    <input className='user-input6' type="password" name="name" placeholder="Passowrd"/>
+    <input className='user-input6' type="password" name="name" placeholder="Password"/>
   </label>
   <Button className= "todo-button" variant="primary" type="submit">
       Sign Up!
