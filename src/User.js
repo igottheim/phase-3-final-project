@@ -78,17 +78,17 @@ return (
 {/* done1 */}
 
 
-         <h2>BATHROOM:</h2> {category1}
-         <h2>KITCHEN:</h2> {category2}
-         <h2>LIVING ROOM:</h2> {category3}
-         <h2>MASTER BEDROOM:</h2> {category4}
-         <h2>GUEST BEDROOOM:</h2> {category5}
-         <h2>PATIO:</h2> {category6}
-         <h2>GARAGE:</h2> {category7}
-         <h2>BASEMENT:</h2> {category8}
-         <h2>FRONT YARD:</h2> {category9}
-         <h2>BACK YARD:</h2> {category10}
-         <h2>CAR:</h2> {category11}
+         <h2>Bathroom:</h2> {category1}
+         <h2>Kitchen:</h2> {category2}
+         <h2>Living Room:</h2> {category3}
+         <h2>Master Bedroom:</h2> {category4}
+         <h2>Guest Bedroom:</h2> {category5}
+         <h2>Patio:</h2> {category6}
+         <h2>Garage:</h2> {category7}
+         <h2>Basement:</h2> {category8}
+         <h2>Front Yard:</h2> {category9}
+         <h2>Back Yard:</h2> {category10}
+         <h2>Car:</h2> {category11}
 
        
          </h1>
