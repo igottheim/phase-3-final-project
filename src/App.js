@@ -14,8 +14,7 @@ import User from './User';
 import UserForm from './UserForm';
 
 import UserLoginForm from './UserLoginForm';
-
-
+import ScrollToTop from './ScrollToTop';
 
 function App() {
   const [users, setUsers] = useState([])
@@ -240,6 +239,7 @@ function addNewTask(e)
 
   return(
     <Router>
+      <ScrollToTop />
       <Navbar />
         <Switch>
 
